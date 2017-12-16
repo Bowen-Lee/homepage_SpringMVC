@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import top.bowen.common.Config;
 import top.bowen.common.LoadImgType;
 import top.bowen.service.ImgService;
-import vo.Result;
+import vo.UniResult;
 
 @Service
 public class ImgServiceImpl implements ImgService {
@@ -24,9 +24,13 @@ public class ImgServiceImpl implements ImgService {
 	
 	@Autowired
 	private Config config; 
+	
+	@Autowired
+	private UniResult result; 
+	
 
 	@Override
-	public Result doBackGrountImg(MultipartFile file) {
+	public UniResult doBackGrountImg(MultipartFile file) {
 		try {
 			savePic(file.getInputStream(), file.getOriginalFilename());
 		} catch (IOException e) {
@@ -72,16 +76,13 @@ public class ImgServiceImpl implements ImgService {
 		    }
 		  }
 	 
-	 /**
-	   *功能：文件上传
-	   *
-	   * @param file
-	   * @param destDir
-	   * @throws Exception
-	   * @author wangsheng
-	   * @date 2016年9月8日
-	   */
-	  public void upload(MultipartFile file) throws Exception {
+	  /**单文件上传
+	 * @param file
+	 * @throws Exception
+	 * @author usky_Bowen
+	 */
+	@SuppressWarnings("unchecked")
+	public UniResult upload(MultipartFile file) throws Exception {
 	    try {
 	      String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
 	      if (LoadImgType.getByCode(suffix)==null) {
@@ -94,11 +95,11 @@ public class ImgServiceImpl implements ImgService {
 	      if (!destFile.exists()) {
 	        destFile.mkdirs();
 	      }
-	      String fileNameNew =  "backGrounteImg." + suffix;
+	      String fileNameNew =  "image." + suffix;
 	      File f = new File(destFile.getAbsoluteFile() + "/" + fileNameNew);
 	      file.transferTo(f);
 	      f.createNewFile();
-	      fileName = basePath + destDir + fileNameNew;
+	      return result.ok(config.getImgUrl()  + "/" + fileNameNew);
 	    } catch (Exception e) {
 	      throw e;
 	    }

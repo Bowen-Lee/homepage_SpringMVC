@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import top.bowen.service.ImgService;
-import vo.Result;
+import vo.UniResult;
 
 @Controller
 @RequestMapping("/MI/img")
@@ -25,7 +25,7 @@ public class ImgController {
 	
 	@ResponseBody
 	@RequestMapping(value= "/doBackGrountImg",method=RequestMethod.POST)
-	public Result doBackGrountImg(@RequestBody MultipartFile file) {
+	public UniResult doBackGrountImg(@RequestBody MultipartFile file) {
 		return imgService.doBackGrountImg(file);
 	}
 }
