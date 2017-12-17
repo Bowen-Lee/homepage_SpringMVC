@@ -13,11 +13,13 @@ import top.bowen.service.ImgService;
 import vo.UniResult;
 
 @Controller
-@RequestMapping("/MI/website")
+@RequestMapping("/website")
 public class WebsiteController extends BaseComponent{
 	
 	@Autowired
 	private ImgService imgService;
+	
+	
 	
 	@ResponseBody
 	@RequestMapping(value="",method= RequestMethod.POST)

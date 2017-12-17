@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<welcome-file-list>
-		<welcome-file>/WEB-INF/index.html</welcome-file>
+		<welcome-file>/index.do</welcome-file>
 	</welcome-file-list>
 	<!-- Spring通过DispatcherServlet解析XML文件创建出Spring IOC容器 -->
 	<servlet>
@@ -18,7 +18,7 @@
 	<!-- 拦截为* 的请求然后——> DispatcherServlet——> 解析XML——> HandleMapping -->
 	<servlet-mapping>
 		<servlet-name>springServlet</servlet-name>
-		<url-pattern>/MI/</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
 

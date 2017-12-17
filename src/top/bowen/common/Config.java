@@ -13,7 +13,7 @@ public class Config {
 	/**
 	 * 背景图片储存路径
 	 */
-	private String ImgUrl;//
+	private String imgUrl;//
 
 	/**
 	 * 上传最大限制
@@ -28,11 +28,11 @@ public class Config {
 	}
 
 	public String getImgUrl() {
-		return ImgUrl;
+		return imgUrl;
 	}
 
 	public void setImgUrl(String imgUrl) {
-		ImgUrl = imgUrl;
+		this.imgUrl = imgUrl;
 	}
 
 

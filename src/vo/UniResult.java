@@ -13,6 +13,46 @@ public class UniResult<T> {
 
 	public static String MESSAGE_OK = "message.result.ok";
 	public static String MESSAGE_ERROR = "message.result.error";
+	
+
+	public static Integer getSTATUS_OK() {
+		return STATUS_OK;
+	}
+
+
+	public static void setSTATUS_OK(Integer sTATUS_OK) {
+		STATUS_OK = sTATUS_OK;
+	}
+
+
+	public static Integer getSTATUS_ERROR() {
+		return STATUS_ERROR;
+	}
+
+
+	public static void setSTATUS_ERROR(Integer sTATUS_ERROR) {
+		STATUS_ERROR = sTATUS_ERROR;
+	}
+
+
+	public static String getMESSAGE_OK() {
+		return MESSAGE_OK;
+	}
+
+
+	public static void setMESSAGE_OK(String mESSAGE_OK) {
+		MESSAGE_OK = mESSAGE_OK;
+	}
+
+
+	public static String getMESSAGE_ERROR() {
+		return MESSAGE_ERROR;
+	}
+
+
+	public static void setMESSAGE_ERROR(String mESSAGE_ERROR) {
+		MESSAGE_ERROR = mESSAGE_ERROR;
+	}
 
 	// @ApiModelProperty(value = "业务状态", name = "status")
 	private Integer status;

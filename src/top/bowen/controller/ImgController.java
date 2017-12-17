@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,7 +22,7 @@ import vo.UniResult;
  *	图片处理
  */
 @Controller
-@RequestMapping("/MI/img")
+@RequestMapping("/img")
 @SuppressWarnings("unused")
 public class ImgController extends BaseComponent{
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebsiteController.class);
@@ -44,8 +45,8 @@ public class ImgController extends BaseComponent{
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value= "/test",method=RequestMethod.POST)
-	public UniResult<Object> test(@RequestBody MultipartFile file) {
-		return ok(file.getName());
+	@RequestMapping(value= "/test",method=RequestMethod.GET)
+	public UniResult<Object> test(@RequestParam String str) {
+		return ok(str);
 	}
 }
