@@ -1,10 +1,7 @@
 package top.bowen.controller;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +20,7 @@ import vo.UniResult;
  */
 @Controller
 @RequestMapping("/img")
-@SuppressWarnings("unused")
 public class ImgController extends BaseComponent{
-	private static final Logger LOGGER = LoggerFactory.getLogger(WebsiteController.class);
 	
 	@Autowired
 	private ImgService imgService;
@@ -36,8 +31,9 @@ public class ImgController extends BaseComponent{
 	 */
 	@ResponseBody
 	@RequestMapping(value= "/doBackGrountImg",method=RequestMethod.POST)
-	public UniResult<Object> doBackGrountImg(@RequestBody MultipartFile file) {
-		return imgService.doBackGrountImg(file);
+	public Object doBackGrountImg(@RequestBody MultipartFile file) {
+		UniResult<String> doBackGrountImg = imgService.doBackGrountImg(file);
+		return doBackGrountImg;
 	}
 	
 	/**上传文件测试
@@ -45,8 +41,8 @@ public class ImgController extends BaseComponent{
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value= "/test",method=RequestMethod.GET)
-	public UniResult<Object> test(@RequestParam String str) {
+	@RequestMapping(value= "/test.do",method=RequestMethod.GET)
+	public Object test(@RequestParam String str) {
 		return ok(str);
 	}
 }

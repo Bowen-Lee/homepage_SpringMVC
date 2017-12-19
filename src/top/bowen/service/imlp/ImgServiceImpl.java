@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,23 +20,27 @@ import top.bowen.service.ImgService;
 import vo.UniResult;
 
 @Service
-public class ImgServiceImpl extends BaseComponent implements ImgService {
+public class ImgServiceImpl implements ImgService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(ImgServiceImpl.class);
-	
+
 	@Autowired
+	private BaseComponent baseComponent;
+
+	@Autowired
+	@Qualifier("config")
 	private Config config; 
 
 	@Override
-	public UniResult<Object> doBackGrountImg(MultipartFile file) {
+	public UniResult<String> doBackGrountImg(MultipartFile file) {
 		String url= "";
 		try {
 			url = savePic(file.getInputStream(), file.getOriginalFilename());
 		} catch (IOException e) {
 			LOGGER.error("解析图片文件出错",e);
-			return error("解析图片文件出错");
+			return baseComponent.error("解析图片文件出错");
 		}
-		return ok(url);
+		return baseComponent.ok(url);
 	}
 	
 	 /**没有限制的文件上传

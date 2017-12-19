@@ -1,13 +1,16 @@
 package top.bowen.common;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-import top.bowen.controller.WebsiteController;
 import vo.UniResult;
 
+@Service
 public class BaseComponent {
-	protected final Logger LOGGER = LoggerFactory.getLogger(WebsiteController.class);
+	
+	public BaseComponent() {
+		super();
+	}
+
 	/**
 	 * ok(通过结果数据，创建一个成功的通用返回结果)
 	 * 
@@ -15,8 +18,7 @@ public class BaseComponent {
 	 * @return
 	 */
 	public <T> UniResult<T> ok(T data) {
-		UniResult<T> result = new UniResult<T>(UniResult.STATUS_OK, UniResult.MESSAGE_OK, data);
-
+		UniResult<T> result = new UniResult<T>(true,null, "success", data);
 		return result;
 	}
 
@@ -25,9 +27,8 @@ public class BaseComponent {
 	 * 
 	 * @return
 	 */
-	public UniResult<Object> ok() {
-		UniResult<Object> result = new UniResult<Object>(UniResult.STATUS_OK, UniResult.MESSAGE_OK, null);
-
+	public <T> UniResult<T> ok() {
+		UniResult<T> result = new UniResult<T>(true,null, "success", null);
 		return result;
 	}
 
@@ -36,13 +37,13 @@ public class BaseComponent {
 	 * 
 	 * @return
 	 */
-	public UniResult<Object> error() {
-		UniResult<Object> result = new UniResult<Object>(UniResult.STATUS_ERROR, UniResult.MESSAGE_ERROR, null);
+	public <T> UniResult<T> error() {
+		UniResult<T> result = new UniResult<T>(false,null, "fail", null);
 		return result;
 	}
 
-	public UniResult<Object> error(String errorCode, String messagekey) {
-		UniResult<Object> result = new UniResult<Object>(UniResult.STATUS_ERROR, errorCode, messagekey, null);
+	public <T> UniResult<T> error(String errorCode, String messagekey) {
+		UniResult<T> result = new UniResult<T>(true,errorCode, messagekey, null);
 		return result;
 	}
 
@@ -53,8 +54,8 @@ public class BaseComponent {
 	 *            结果信息，使用message key能够进行国际化处理
 	 * @return
 	 */
-	public UniResult<Object> error(String messagekey) {
-		UniResult<Object> result = new UniResult<Object>(UniResult.STATUS_ERROR, messagekey, null);
+	public <T> UniResult<T> error(String messagekey) {
+		UniResult<T> result = new UniResult<T>(false,null, messagekey, null);
 		return result;
 	}
 
@@ -66,9 +67,9 @@ public class BaseComponent {
 	 *            结果信息，使用message key能够进行国际化处理
 	 * @return
 	 */
-	public UniResult<Object> build(Integer status, String message) {
-		UniResult<Object> result = new UniResult<Object>(status, message, null);
-
+	public <T> UniResult<T> build(Boolean status, String message) {
+		UniResult<T> result = new UniResult<T>(status,null, message, null);
 		return result;
 	}
+
 }
